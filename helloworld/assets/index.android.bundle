@@ -24259,7 +24259,7 @@ __d(200 /* getDevServer */, function(global, require, module, exports) {
 require(60 /* NativeModules */);var SourceCode=_require.SourceCode;
 
 var _cachedDevServerURL=void 0;
-var FALLBACK='http://localhost:8081/';
+var FALLBACK='http://192.168.1.15:8081/';
 
 
 
