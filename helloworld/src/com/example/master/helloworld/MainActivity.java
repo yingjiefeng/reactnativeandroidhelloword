@@ -8,9 +8,23 @@ import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
-import com.open.react.packages.CommonReactPackage;
+import com.facebook.react.shell.MainReactPackage;
 
-
+/**
+ * 
+ *****************************************************************************************************************************************************************************
+ * 1.react-native start 开启服务
+ * 2.下载index.android.bundle
+ * http://localhost:8081/index.android.bundle?platform=android
+ * 
+ * @author :fengguangjing
+ * @createTime:2017-6-13下午5:42:56
+ * @version:4.2.4
+ * @modifyTime:
+ * @modifyAuthor:
+ * @description:
+ *****************************************************************************************************************************************************************************
+ */
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
     private ReactRootView mReactRootView;
     private ReactInstanceManager mReactInstanceManager;
@@ -24,8 +38,9 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .setApplication(getApplication())
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
-//                .addPackage(new MainReactPackage())
-                .addPackage(new CommonReactPackage())//自定义module
+                
+                .addPackage(new MainReactPackage())
+//                .addPackage(new CommonReactPackage())//自定义module
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
