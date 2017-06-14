@@ -1,9 +1,9 @@
 package com.example.master.helloworld;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
 import com.facebook.react.LifecycleState;
@@ -27,7 +27,7 @@ import com.facebook.react.shell.MainReactPackage;
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
+public class MainActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
     private ReactRootView mReactRootView;
     private ReactInstanceManager mReactInstanceManager;
 	private String bundleAssetName;
