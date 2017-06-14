@@ -1,6 +1,8 @@
 package com.example.master.helloworld;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
@@ -28,23 +30,30 @@ import com.facebook.react.shell.MainReactPackage;
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
     private ReactRootView mReactRootView;
     private ReactInstanceManager mReactInstanceManager;
-
+	private String bundleAssetName;
+	private String jSMainModuleName;
+	private String moduleName;
+	private boolean remoteable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        bundleAssetName = getIntent().getStringExtra("bundleAssetName");
+        jSMainModuleName = getIntent().getStringExtra("jSMainModuleName");
+        moduleName = getIntent().getStringExtra("moduleName");
+        
         mReactRootView = new ReactRootView(this);
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
-                .setBundleAssetName("index.android.bundle")
-                .setJSMainModuleName("index.android")
+                .setBundleAssetName(bundleAssetName)
+                .setJSMainModuleName(jSMainModuleName)
                 
                 .addPackage(new MainReactPackage())
 //                .addPackage(new CommonReactPackage())//自定义module
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
-        mReactRootView.startReactApplication(mReactInstanceManager, "helloworld", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, moduleName, null);
 
         setContentView(mReactRootView);
     }
@@ -95,5 +104,16 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
             return true;
         }
         return super.onKeyUp(keyCode, event);
+    }
+    
+    
+    public static void startMainActivity(Context context,String bundleAssetName,String jSMainModuleName,String moduleName){
+    	Intent intent = new Intent();
+    	intent.setClass(context, MainActivity.class);
+    	intent.putExtra("bundleAssetName", bundleAssetName);
+    	intent.putExtra("jSMainModuleName", jSMainModuleName);
+    	intent.putExtra("moduleName", moduleName);
+    	context.startActivity(intent);
+    	
     }
 }
