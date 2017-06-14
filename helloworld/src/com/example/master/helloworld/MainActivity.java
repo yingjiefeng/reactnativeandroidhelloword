@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
@@ -18,7 +20,7 @@ import com.facebook.react.shell.MainReactPackage;
  * 1.react-native start 开启服务
  * 2.下载index.android.bundle
  * http://localhost:8081/index.android.bundle?platform=android
- * 
+ * 3.adb reverse tcp:8081 tcp:8081
  * @author :fengguangjing
  * @createTime:2017-6-13下午5:42:56
  * @version:4.2.4
@@ -30,9 +32,9 @@ import com.facebook.react.shell.MainReactPackage;
 public class MainActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
     private ReactRootView mReactRootView;
     private ReactInstanceManager mReactInstanceManager;
-	private String bundleAssetName;
-	private String jSMainModuleName;
-	private String moduleName;
+	private String bundleAssetName = "index.android.bundle";
+	private String jSMainModuleName = "index.android";
+	private String moduleName = "helloworld";
 	private boolean remoteable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +107,28 @@ public class MainActivity extends AppCompatActivity implements DefaultHardwareBa
         }
         return super.onKeyUp(keyCode, event);
     }
-    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+        	if ( mReactInstanceManager != null) {
+                mReactInstanceManager.showDevOptionsDialog();
+                return true;
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     
     public static void startMainActivity(Context context,String bundleAssetName,String jSMainModuleName,String moduleName){
     	Intent intent = new Intent();
