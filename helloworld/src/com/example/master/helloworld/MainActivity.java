@@ -13,6 +13,7 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
+import com.open.react.packages.CommonReactPackage;
 
 /**
  * 
@@ -49,9 +50,8 @@ public class MainActivity extends AppCompatActivity implements DefaultHardwareBa
                 .setApplication(getApplication())
                 .setBundleAssetName(bundleAssetName)
                 .setJSMainModuleName(jSMainModuleName)
-                
                 .addPackage(new MainReactPackage())
-//                .addPackage(new CommonReactPackage())//自定义module
+                .addPackage(new CommonReactPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
