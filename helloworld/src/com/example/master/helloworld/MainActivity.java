@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements DefaultHardwareBa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        bundleAssetName = getIntent().getStringExtra("bundleAssetName");
-        jSMainModuleName = getIntent().getStringExtra("jSMainModuleName");
-        moduleName = getIntent().getStringExtra("moduleName");
+//
+//        bundleAssetName = getIntent().getStringExtra("bundleAssetName");
+//        jSMainModuleName = getIntent().getStringExtra("jSMainModuleName");
+//        moduleName = getIntent().getStringExtra("moduleName");
         
         mReactRootView = new ReactRootView(this);
         mReactInstanceManager = ReactInstanceManager.builder()
