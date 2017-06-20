@@ -22,6 +22,21 @@ import com.open.react.packages.CommonReactPackage;
  * 2.下载index.android.bundle
  * http://localhost:8081/index.android.bundle?platform=android
  * 3.adb reverse tcp:8081 tcp:8081
+ * 
+ * git clone https://github.com/facebook/react-native.git
+cd react-native && npm install
+Running the RNTester app on iOS
+
+Now open RNTester/RNTester.xcodeproj and hit Run in Xcode.
+
+Running the RNTester app on Android
+
+Note that you'll need the Android NDK installed, see prerequisites.
+
+./gradlew :RNTester:android:app:installDebug
+# Start the packager in a separate shell (make sure you ran npm install):
+./scripts/packager.sh
+http://localhost:8081/RNTester/js/RNTesterApp.android.js
  * @author :fengguangjing
  * @createTime:2017-6-13下午5:42:56
  * @version:4.2.4
@@ -35,12 +50,12 @@ public class MainActivity extends AppCompatActivity implements DefaultHardwareBa
     private ReactInstanceManager mReactInstanceManager;
 	private String bundleAssetName = "index.android.bundle";
 	private String jSMainModuleName = "index.android";
-	private String moduleName = "helloworld";
+	private String moduleName = "RCTZhiHuDaily";
 	private boolean remoteable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
+ 
 //        bundleAssetName = getIntent().getStringExtra("bundleAssetName");
 //        jSMainModuleName = getIntent().getStringExtra("jSMainModuleName");
 //        moduleName = getIntent().getStringExtra("moduleName");
